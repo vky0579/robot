@@ -8,13 +8,6 @@ and folder. It is easy to use."""
 #update it by creating sql databases for reducing time and increasing speed
 #current Version 4.2
 
-"""This is an open sourch initiative and this code 
-could be modified but the copy of modification should have 
-the name of its developer that is : Vaibhav
-
-This code should not be sold for money"""
-
-
 import time
 import os
 
