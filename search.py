@@ -11,6 +11,7 @@ and folder. It is easy to use."""
 import time
 import os
 
+
 class Main():    #this class will contain main code
     def __init__(self, path, name, directory):
         self.path = path
