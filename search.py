@@ -52,11 +52,11 @@ if __name__ == "__main__":
     parser.add_argument("--path", "-p", help = "Specify the path ro search in")
     parser.add_argument("--name", "-n", help = "specify the name of file/folder")    
     parser.add_argument("--search", "-s", help = "Specify file or folder you are looking for (f = file/d = directory)", choices=["f", "d"])
-    parser.add_argument("--version", "-v", help = "check the version")
+    parser.add_argument("--version", "-v", help = "check the version", action = "store_true")
 
-    args = parser.parse_args()
+    args = parser.parse_args()  #parsing arguments
 
-    path = os.getcwd()
+    path = os.getcwd()  #so if user specify nothing it takes default directory
     question = None
 
     if args.version:
@@ -88,6 +88,4 @@ if __name__ == "__main__":
         stop = time.perf_counter()
         print(f"Time taken = {stop - start}")
 
-        
-
-#End of code
+    
