@@ -10,8 +10,7 @@ and folder. It is easy to use."""
 
 import time
 import os
-
-
+import argparse
 class Main():    #this class will contain main code
     def __init__(self, path, name, directory):
         self.path = path
@@ -44,47 +43,51 @@ class Main():    #this class will contain main code
             for folder in dirname:
                 
                 if folder.find(self.directory) != -1:
-
-                    #####################################################################
-                    """ print(f"found in : {os.path.join(os.getcwd(), folder)}")        
-                    the above statement worked fine for files but it gave weird results 
-                    for folder check walk.py for details"""
-                    #####################################################################
-                    
                     print(f"found in : {dirpath}\{folder}")
                
            
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--path", "-p", help = "Specify the path ro search in")
+    parser.add_argument("--name", "-n", help = "specify the name of file/folder")    
+    parser.add_argument("--search", "-s", help = "Specify file or folder you are looking for (f = file/d = directory)", choices=["f", "d"])
+    parser.add_argument("--version", "-v", help = "check the version")
+
+    args = parser.parse_args()
+
+    path = os.getcwd()
+    question = None
+
+    if args.version:
+        print("4.5")
+
     
-    path = input("Enter a path : ")
-    if path == "":
-        path = os.getcwd()    
-    question = input("Do you want to search (a)file or (b)folder\n: ")
+    if args.path:
+        path = args.path
+
+    question = args.search
     
     #for files searching
     
-    if question == "a":
-        name = input("Enter name of the file\n: ")
+    if question == "f":
+        name = args.name
         start = time.perf_counter()
         run = Main(path, name, None)  #here none is used as this is not required
         run.search_file()
         stop = time.perf_counter()
-        print(stop - start)
-        escape = input("press enter key to exit ")
+        print(f"Time taken = {stop - start}")
 
-    #for folder searching
+    #for directory searching
 
-    elif question == "b":
-        name = input("Enter name of the folder : ")
+    elif question == "d":
+        name = args.name
         start = time.perf_counter()
         run = Main(path, None, name)
         run.search_folder()
         stop = time.perf_counter()
-        print(stop - start)
-        escape = input("press enter key to exit ")
-    
-    else:
-        print("Please specify correct parameter")
+        print(f"Time taken = {stop - start}")
+
         
 
 #End of code
