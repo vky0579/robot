@@ -12,6 +12,7 @@ import time
 import os
 import argparse
 
+
 class Main():    #this class will contain main code
     def __init__(self, path, name, directory):
         self.path = path
@@ -21,7 +22,7 @@ class Main():    #this class will contain main code
 
     def search_file(self):  #this is used to search file
         try:    
-            os.chdir(os.path.join(os.getcwd(), self.path))
+            os.chdir(os.path.join(os.getcwd(), self.path))  #So if relative path is given it does not give error
         except FileNotFoundError:
             print(f"{self.path} does not exists {os.getcwd()}")         
             exit() 
@@ -29,7 +30,7 @@ class Main():    #this class will contain main code
         for dirpath, dirname, filename in os.walk(os.getcwd()):
             for file in filename:
                 if file.find(self.name) != -1:
-                    print(f"found in : {os.path.join(os.getcwd(), file)}")
+                    print(f"found in : {dirpath}\{file}")
 
     def search_folder(self): #this is used to search folder
         try:    
